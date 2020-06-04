@@ -1,5 +1,5 @@
 from room import Room
-
+from player import Player
 # Declare all the rooms
 
 room = {
@@ -7,18 +7,18 @@ room = {
                      "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", ['rock', 'sand']),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", ['cable', 'sugar']),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", ['water', 'ruby']),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", ['ash']),
 }
 
 
@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player1 = Player('Alex', room['outside'])
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +49,31 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+start = True
+while start:
+    selection = input(
+        "\nBust a move \n>>>").lower().split()
+    if len(selection) < 2:
+        if selection[0] == 'q':
+            start = False
+        else:
+            print('two or commands needed')
+    if selection[0] == 'goto':
+        if selection[1] == 'n':
+            player1.move(selection[1])
+        elif selection[1] == 's':
+            player1.move(selection[1])
+        elif selection[1] == 'w':
+            player1.move(selection[1])
+        elif selection[1] == 'e':
+            player1.move(selection[1])
+    elif selection[0] == 'pickup':
+        if len(selection) > 1:
+            player1.pick_up(selection[1])
+        else:
+            print('\nwhat do you want to pickup?\n')
+    elif selection[0] == 'drop':
+        if len(selection) > 1:
+            player1.drop(selection[1])
+        else:
+            print('\ncant drop nothing now, can ya?\n')
