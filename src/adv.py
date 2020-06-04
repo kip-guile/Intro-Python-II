@@ -51,6 +51,17 @@ player1 = Player('Alex', room['outside'])
 # If the user enters "q", quit the game.
 start = True
 while start:
-    print(f'You have entered {player1.room.name}')
-    print(player1.room.description)
-    start = False
+    # print(f'\nYou are in {player1.current.name}')
+    # print(player1.current.description)
+    selection = input(
+        "\nkey in N to go north, S to go south, W to go west, E to go east, or Q to quit >>> ")
+    if selection == 'n':
+        player1.move(selection)
+    elif selection == 's':
+        player1.move(selection)
+    elif selection == 'w':
+        player1.move(selection)
+    elif selection == 'e':
+        player1.move(selection)
+    elif selection == 'q':
+        start = False
