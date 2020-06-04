@@ -53,14 +53,27 @@ start = True
 while start:
     selection = input(
         "\nBust a move \n>>>").lower().split()
-    print(selection)
-    if selection[1] == 'n':
-        player1.move(selection[1])
-    elif selection[1] == 's':
-        player1.move(selection[1])
-    elif selection[1] == 'w':
-        player1.move(selection[1])
-    elif selection[1] == 'e':
-        player1.move(selection[1])
-    elif selection[1] == 'q':
-        start = False
+    if len(selection) < 2:
+        if selection[0] == 'q':
+            start = False
+        else:
+            print('two or commands needed')
+    if selection[0] == 'goto':
+        if selection[1] == 'n':
+            player1.move(selection[1])
+        elif selection[1] == 's':
+            player1.move(selection[1])
+        elif selection[1] == 'w':
+            player1.move(selection[1])
+        elif selection[1] == 'e':
+            player1.move(selection[1])
+    elif selection[0] == 'pickup':
+        if len(selection) > 1:
+            player1.pick_up(selection[1])
+        else:
+            print('\nwhat do you want to pickup?\n')
+    elif selection[0] == 'drop':
+        if len(selection) > 1:
+            player1.drop(selection[1])
+        else:
+            print('\ncant drop nothing now, can ya?\n')

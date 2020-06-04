@@ -22,3 +22,10 @@ class Player:
         if item in self.current.items:
             self.inventory.append(item)
             self.current.items.remove(item)
+            print(f'inventory: {self.inventory}')
+
+    def drop(self, item):
+        if item in self.inventory:
+            self.inventory.remove(item)
+            self.current.items.append(item)
+            print(f'inventory: {self.inventory}')
