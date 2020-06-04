@@ -7,18 +7,18 @@ room = {
                      "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", ['rock', 'sand']),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", ['cable', 'sugar']),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", ['water', 'ruby']),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", ['ash']),
 }
 
 
@@ -52,14 +52,15 @@ player1 = Player('Alex', room['outside'])
 start = True
 while start:
     selection = input(
-        "\nkey in N to go north, S to go south, W to go west, E to go east, or Q to quit >>> ")
-    if selection == 'n':
-        player1.move(selection)
-    elif selection == 's':
-        player1.move(selection)
-    elif selection == 'w':
-        player1.move(selection)
-    elif selection == 'e':
-        player1.move(selection)
-    elif selection == 'q':
+        "\nBust a move \n>>>").lower().split()
+    print(selection)
+    if selection[1] == 'n':
+        player1.move(selection[1])
+    elif selection[1] == 's':
+        player1.move(selection[1])
+    elif selection[1] == 'w':
+        player1.move(selection[1])
+    elif selection[1] == 'e':
+        player1.move(selection[1])
+    elif selection[1] == 'q':
         start = False
